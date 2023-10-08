@@ -39,8 +39,9 @@ public class Memoria {
             textoBuffer = "";
             substituir = false;
             ultimaOperacao = null;
-        } else if(tipoComando == TipoComando.ZERAR || tipoComando == TipoComando.VIRGULA){
+        } else if(tipoComando == TipoComando.NUMERO || tipoComando == TipoComando.VIRGULA){
             textoAtual = substituir ? texto : textoAtual + texto;
+            substituir = false;
         }
 
 
@@ -68,7 +69,7 @@ public class Memoria {
                 return TipoComando.SUB;
             } else if("=".equalsIgnoreCase(texto)){
                 return TipoComando.IGUAL;
-            } else if(",".equalsIgnoreCase(texto)){
+            } else if(",".equalsIgnoreCase(texto) && !textoAtual.contains(",")){
                 return TipoComando.VIRGULA;
             }
         }
